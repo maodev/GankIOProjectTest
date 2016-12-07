@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">GankIOProject</string>
+    <string name="title_name">Gank.Io</string>
+    <string name="tabtitle_android">Android</string>
+    <string name="tabtitle_ios">iOS</string>
+    <string name="tabtitle_ui">前端</string>
+    <string name="detail_title">前端</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

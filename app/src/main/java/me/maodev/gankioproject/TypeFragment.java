@@ -125,6 +125,10 @@ public  class TypeFragment extends Fragment implements SwipeRefreshLayout.OnRefr
                     modellist = response.body().getResults();
                     adapter = new MultipleAdapter(getActivity(), GenerApplication.getInstance(),modellist);
                     recyclerview.setAdapter(adapter);
+                }else if(way.equals("add")){
+                    ArrayList<ResultModel> temp = response.body().getResults();
+                    modellist.addAll(temp);
+                    adapter.notifyDataSetChanged();
                 }else {
                     ArrayList<ResultModel> temp = response.body().getResults();
                     modellist.addAll(temp);
@@ -157,7 +161,7 @@ public  class TypeFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         modellist.clear();
         currentPage = 1;
         swipeRefreshLayout.setRefreshing(true);
-        getGankList(type,"load");
+        getGankList(type,"refresh");
     }
     //    @Override
 //    public void setUserVisibleHint(boolean isVisibleToUser) {

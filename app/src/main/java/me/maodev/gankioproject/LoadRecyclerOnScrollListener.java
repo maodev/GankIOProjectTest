@@ -30,18 +30,12 @@ public abstract class LoadRecyclerOnScrollListener extends RecyclerView.OnScroll
             if (totalItemCount > previousTotal) {
                 loading = false;
                 previousTotal = totalItemCount;
-<<<<<<< HEAD
             }else{
                 previousTotal = 0;
             }
         }
         if (!loading&& (totalItemCount - visibleItemCount) <= firstVisibleItem) {
-=======
-            }
-        }
-        if (!loading
-                && (totalItemCount - visibleItemCount) <= firstVisibleItem) {
->>>>>>> origin/master
+
             currentPage++;
             onLoadMore();
             loading = true;

@@ -160,6 +160,7 @@ public  class TypeFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     public void onRefresh() {
         modellist.clear();
         currentPage = 1;
+        adapter.notifyDataSetChanged();
         swipeRefreshLayout.setRefreshing(true);
         getGankList(type,"refresh");
     }

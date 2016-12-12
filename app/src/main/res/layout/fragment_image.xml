@@ -11,5 +11,6 @@
        android:id="@+id/iv"
        android:layout_width="match_parent"
        android:layout_height="188dp"
-       android:scaleType="fitXY"/>
+       android:contentDescription="content description"
+       android:scaleType="centerCrop"/>
 </RelativeLayout>

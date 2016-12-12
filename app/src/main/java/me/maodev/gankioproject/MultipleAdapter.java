@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -75,13 +76,37 @@ public class MultipleAdapter extends  RecyclerView.Adapter<ViewHolder>  implemen
             ((SinglwImageViewHolder) holder).tv_name.setText(mlist.get(position).getWho());
             ((SinglwImageViewHolder) holder).tv_title.setText(mlist.get(position).getDesc());
             GlideImageLoader.LoadImage( ((SinglwImageViewHolder) holder).iv_top,mlist.get(position).getImages().get(0));             holder.itemView.setTag(mlist.get(position).getUrl());
-
         }else if(holder instanceof  PureTextHolder){
             ((PureTextHolder) holder).tv_date.setText(mlist.get(position).getPublishedAt().substring(0,10));
             ((PureTextHolder) holder).tv_name.setText(mlist.get(position).getWho());
             ((PureTextHolder) holder).tv_title.setText(mlist.get(position).getDesc());
             ImageFragmentAdapter adapter = new ImageFragmentAdapter(mactivity.getSupportFragmentManager(), mlist.get(position).getImages());
             ((PureTextHolder) holder).iv_vp.setAdapter(adapter);
+                final CirclePagerIndicator indicator = new CirclePagerIndicator(mcontext);
+                indicator.setCircleCount(mlist.get(position).getImages().size());
+                indicator.setNormalColor(mcontext.getResources().getColor(R.color.circle_iv_choose));
+                indicator.setFocusColor(mcontext.getResources().getColor(R.color.tab_title_text_selected));
+                //将导航圆点添加到圆点容器中
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                ((PureTextHolder) holder).indicator_ll.addView(indicator, lp);
+            ((PureTextHolder) holder).iv_vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                        //关联ViewPager
+                        indicator.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+                    }
+                });
+
+
+
           holder.itemView.setTag(mlist.get(position).getUrl());
 
         }
@@ -94,12 +119,14 @@ public class MultipleAdapter extends  RecyclerView.Adapter<ViewHolder>  implemen
         TextView tv_name;
         TextView tv_date;
         ViewPager iv_vp;
+        LinearLayout indicator_ll;
         public PureTextHolder(View view){
             super(view);
             tv_title = (TextView) view.findViewById(R.id.tv_title);
             tv_name = (TextView) view.findViewById(R.id.tv_name);
             tv_date = (TextView) view.findViewById(R.id.tv_date);
             iv_vp = (ViewPager) view.findViewById(R.id.iv_vp);
+            indicator_ll = (LinearLayout) view.findViewById(R.id.indicator_ll);
         }
     }
 
@@ -125,8 +152,7 @@ public class MultipleAdapter extends  RecyclerView.Adapter<ViewHolder>  implemen
         TextView tv_name;
         TextView tv_date;
         ImageView iv_top;
-        public SinglwImageViewHolder(View view)
-        {
+        public SinglwImageViewHolder(View view){
             super(view);
             tv_title = (TextView) view.findViewById(R.id.tv_title);
             tv_name = (TextView) view.findViewById(R.id.tv_name);

@@ -9,6 +9,8 @@
     <color name="item_title_text_grey">#DE4A4A4A</color>
     <color name="item_bottom_line">#3D4A4A4A</color>
     <color name="item_text_opimage">#6B000000</color>
+    <color name="circle_iv_choose">#80FFFFFF</color>
+    <color name="circle_iv_unchoose">#FFFF8C</color>
 
 
 

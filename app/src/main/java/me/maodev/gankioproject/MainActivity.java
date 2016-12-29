@@ -3,16 +3,17 @@ package me.maodev.gankioproject;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 
+import me.maodev.gankioproject.tool.LazyViewPager;
+
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     TabLayout  tabLayout;
-    ViewPager vp;
+    LazyViewPager vp;
     ArrayList<String> tabTitle = new ArrayList<String>();
     ArrayList<Fragment> tabFragment = new ArrayList<Fragment>();
     @Override
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        vp = (ViewPager) findViewById(R.id.vp);
+        vp = (LazyViewPager) findViewById(R.id.vp);
         tabTitle.add(getString(R.string.tabtitle_android));
         tabTitle.add(getString(R.string.tabtitle_ios));
         tabTitle.add(getString(R.string.tabtitle_ui));
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentAdapter fragmentadapter = new FragmentAdapter(getSupportFragmentManager(),tabTitle,tabFragment);
         vp.setAdapter(fragmentadapter);
-       vp.setOffscreenPageLimit(3);
+         vp.setOffscreenPageLimit(3);
 //        vp.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
 //            @Override
 //            public Fragment getItem(int position) {

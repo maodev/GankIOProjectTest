@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import me.maodev.gankioproject.tool.LazyFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
-public  class TypeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public  class TypeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,LazyFragmentPagerAdapter.Laziable{
 
     String type;
 //    @BindView(R.id.recyclerview)

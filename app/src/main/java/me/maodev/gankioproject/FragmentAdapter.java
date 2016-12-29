@@ -2,15 +2,17 @@ package me.maodev.gankioproject;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
+
+import me.maodev.gankioproject.tool.LazyFragmentPagerAdapter;
 
 /**
  * Created by maoyu on 16/12/2.
  */
 
-public class FragmentAdapter extends FragmentPagerAdapter {
+public class FragmentAdapter extends LazyFragmentPagerAdapter {
     ArrayList<String> mtabTitle;
      ArrayList<Fragment> mtabFragment;
 
@@ -19,8 +21,13 @@ public class FragmentAdapter extends FragmentPagerAdapter {
         this.mtabTitle = tabTitle;
         this. mtabFragment= tabFragment;
     }
+//    @Override
+//    public Fragment getItem(int position) {
+//        return mtabFragment.get(position);
+//    }
+
     @Override
-    public Fragment getItem(int position) {
+    protected Fragment getItem(ViewGroup container, int position) {
         return mtabFragment.get(position);
     }
 
